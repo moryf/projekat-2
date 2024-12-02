@@ -16,18 +16,14 @@
 (defn tanh-derivative [x]
   (- 1 (math/pow (tanh x) 2)))
 
+(defn relu [x]
+  (if (> x 0) x 0))
+
+(defn relu-derivative [x]
+  (if (> x 0) 1 0))
+
 (defn random-weight []
   (- (* 2 (rand)) 1))
-
-(sigmoid 1)
-
-(sigmoid-derivitive 0.7310585786300049)
-
-(tanh 1)
-
-(tanh-derivative 0.761594155955765)
-
-(random-weight)
 
 (defn softmax [x]
   (let [exponencijal (map #(Math/exp %) x)
@@ -40,25 +36,16 @@
 (defn initiate-neuron [input-size activation-function]
 (Neuron. (vec (repeatedly input-size random-weight)) activation-function))
 
-(initiate-neuron 3 :sigmoid)
 
 (defrecord Layer [neurons])
 
 (defn initiate-layer [input-size layer-size activation-function]
 (Layer. (vec (repeatedly layer-size #(initiate-neuron input-size activation-function)))))
 
-(initiate-layer 3 2 :sigmoid)
-
 (defrecord Network [layers])
 
 (defn initiate-network [layers]
 (Network. layers))
-
-(initiate-network [
-  (initiate-layer 2 2 :sigmoid)
-  (initiate-layer 2 10 :sigmoid)
-  (initiate-layer 10 3 :sigmoid)
-])
 
 (defn neuron-output [neuron inputs]
   (let [output (map * (:weights neuron) inputs)
