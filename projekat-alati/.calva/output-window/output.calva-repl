@@ -37,7 +37,7 @@ You can configure this with the setting:
 ; 
 
 ; Starting Jack-in: pushd c:\Users\aleks\OneDrive\Dokumenti\fax\master\clojure\projekat-2\projekat-alati & cmd.exe /d /c lein update-in :dependencies conj [nrepl,"1.1.1"] -- update-in :plugins conj [cider/cider-nrepl,"0.47.1"] -- update-in [:repl-options,:nrepl-middleware] conj '["cider.nrepl/cider-middleware"]' -- with-profile +uberjar repl :headless & popd
-; Using host:port 127.0.0.1:51991 ...
+; Using host:port 127.0.0.1:55751 ...
 ; Hooking up nREPL sessions ...
 ; Connected session: clj
 ; Evaluating code from settings: 'calva.autoEvaluateCode.onConnect.clj'
@@ -47,4 +47,42 @@ clj꞉projekat-alati.core꞉> 
 about why stdout printed to this file is prepended with `;` to be line comments."
 clj꞉projekat-alati.core꞉> 
 ; Jack-in done.
+clj꞉projekat-alati.core꞉> 
+#'projekat-alati.core/create-network-atom
+clj꞉projekat-alati.core꞉> 
+#'projekat-alati.core/network-atom
+clj꞉projekat-alati.core꞉> 
+; Warming up for JIT optimisations 5000000000 ...
+;   compilation occurred before 1 iterations
+;   compilation occurred before 1976 iterations
+;   compilation occurred before 3951 iterations
+;   compilation occurred before 5926 iterations
+;   compilation occurred before 7901 iterations
+;   compilation occurred before 9876 iterations
+;   compilation occurred before 13826 iterations
+;   compilation occurred before 15801 iterations
+;   compilation occurred before 17776 iterations
+;   compilation occurred before 21726 iterations
+;   compilation occurred before 23701 iterations
+;   compilation occurred before 25676 iterations
+;   compilation occurred before 29626 iterations
+;   compilation occurred before 35551 iterations
+; Estimating execution count ...
+; Sampling ...
+; Final GC...
+; Checking GC...
+; Finding outliers ...
+; Bootstrapping ...
+; Checking outlier significance
+; Evaluation count : 1632 in 6 samples of 272 calls.
+;              Execution time mean : 422.763925 µs
+;     Execution time std-deviation : 78.594597 µs
+;    Execution time lower quantile : 370.041621 µs ( 2.5%)
+;    Execution time upper quantile : 544.820022 µs (97.5%)
+;                    Overhead used : 1.025922 ns
+nil
+clj꞉projekat-alati.core꞉> 
+#'projekat-alati.core/network-output
+clj꞉projekat-alati.core꞉> 
+#'projekat-alati.core/network-output
 clj꞉projekat-alati.core꞉> 

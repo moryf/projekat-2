@@ -5,7 +5,7 @@
 
 
 (defn sigmoid [x]
-(/ 1(+ 1 (math/pow Math/E (- x)))))
+(/ 1 (+ 1 (math/pow Math/E (- x)))))
 
 (defn sigmoid-derivitive [x]
 (* (sigmoid x) (- 1 (sigmoid x))))
@@ -73,12 +73,28 @@
 (criterium/with-progress-reporting (criterium/quick-bench (layer-output (initiate-layer 2 100 :sigmoid) [1 2])))
 
 (defn network-output [network inputs]
-(softmax (reduce (fn [l i] (layer-output l i)) inputs (:layers network))))
+  (softmax (reduce (fn [layer inputs]
+                     (layer-output inputs layer))
+                   inputs
+                   (:layers @network))))
 
 
 (criterium/with-progress-reporting(criterium/quick-bench (network-output (initiate-network [(initiate-layer 2 50 :sigmoid)
                                    (initiate-layer 50 50 :sigmoid)
                                    (initiate-layer 50 3 :sigmoid)]) [1 2 4])))
+
+(defn mean-squared-error [network inputs targets]
+  (let [outputs (network-output network inputs)]
+    (reduce + (map #(* % %) (map - outputs targets)))))
+
+
+(defn create-network-atom [layers]
+  (atom (initiate-network layers)))
+
+(def network-atom (create-network-atom [(initiate-layer 2 2 :sigmoid)
+                                        (initiate-layer 2 10 :sigmoid)
+                                        (initiate-layer 10 3 :sigmoid)]))
+
 
 
 
